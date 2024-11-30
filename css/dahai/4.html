@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 顺序 容器中的第三个元素 若指定，则选择指定的第三个元素*/
+        .container p:nth-child(3) {
+          background-color: yellow;
+          color: black;
+        }
+        /* 类型  选择第三个p元素，若不指定，则选择所有类型的第三个元素 */
+        .container p:nth-of-type(3){
+            background-color: lightblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>nth-child vs nth-of-type 例子</h1>
+        <p>这是一个段落</p>
+        <div>这是一个div</div>
+        <p>这是第二个段落</p>
+        <p>这是第三个段落</p>
+        <div>这是第二个div</div>
+        <p>这是第四个段落</p>
+        <div>这是第三个div</div>
+    </div>
+</body>
+</html>
