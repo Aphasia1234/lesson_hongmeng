@@ -2,6 +2,9 @@
       this.name= name;
       this.age= age;
  }
+ function Person(){
+    
+ }
  Person.prototype.name= '孔子'
  Person.prototype.age= 18
  Person.prototype.hometown= '山东'
