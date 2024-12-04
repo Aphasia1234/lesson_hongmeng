@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this more</title>
+</head>
+<body>
+    <script>
+        //三种方法  改变this指向
+        // 箭头函数(没有this)  call(绑定this指向)  闭包(保存this指向)  
+        var name = "windowName";
+        var a = {
+            name:"肖宇泉",
+            fun1:function () {
+                console.log(this.name);
+            },
+            fun2:function () {
+                // 箭头函数 没有自己的this  指向外层的this
+                // 简单的，    调用之前就确定了this指向  谁调用指向谁
+                console.log("fun2", this);
+                let _this = this;// 保存当前this指向  闭包  闭包的this指向  指向外层的this
+                setTimeout(( function() {
+                    // this 丢失  调用普通函数 this 指向全局
+                    _this.fun1()
+                // 手动指定this指向
+                // call 编译阶段 绑定this指向
+                }),100)
+        }
+    }
+    a.fun2();
+    </script>
+</body>
+</html>
