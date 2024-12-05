@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="unDebounceInput">用户搜索</label>
+        <input type="text"
+        id="unDebounceInput"
+        placeholder="请输入要搜索的用户名字"
+        >
+    </div>
+    <script>
+     //通往后端的接口
+     const oInput = document.getElementById('unDebounceInput');
+     //当作为事件处理函数来用时， this 指向事件的目标元素
+     oInput.addEventListener('keyup',function(){
+        // console.log('用户输入',this.value);
+        //模拟向后端发送请求
+        fetch('http://localhost:3001/users')//拉取的过来的是二进制数据
+          .then(res=>res.json())//将响应数据转换为json格式
+          .then(users =>{
+            // console.log(users);
+            const filterUsers = users.filter(
+                user => user.name.includes(this.value)
+            )
+            console.log(filterUsers);
+          })
+     })
+    </script>
+</body>
+</html>
