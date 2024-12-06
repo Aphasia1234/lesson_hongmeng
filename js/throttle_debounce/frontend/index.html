@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>全栈防抖</title>
 </head>
 <body>
     <div>
@@ -13,23 +13,67 @@
         placeholder="请输入要搜索的用户名字"
         >
     </div>
+    <ul id="users">
+
+    </ul>
     <script>
+        const oUL = document.querySelector('#users');
      //通往后端的接口
      const oInput = document.getElementById('unDebounceInput');
      //当作为事件处理函数来用时， this 指向事件的目标元素
-     oInput.addEventListener('keyup',function(){
+     //防抖函数 
+     const debounceNameSearch = debounce(handleNameSearch,500);
+     oInput.addEventListener('keyup',debounceNameSearch)
+     
+     function handleNameSearch(){
+        let value = oInput.value.trim();
+        if(value === ''){
+            oUL.innerHTML = '';
+            return;
+        }
         // console.log('用户输入',this.value);
         //模拟向后端发送请求
         fetch('http://localhost:3001/users')//拉取的过来的是二进制数据
           .then(res=>res.json())//将响应数据转换为json格式
           .then(users =>{
             // console.log(users);
+            // 过滤出符合条件的用户
+            //箭头函数的优雅 + filter 的新功能
             const filterUsers = users.filter(
-                user => user.name.includes(this.value)
-            )
-            console.log(filterUsers);
+                user => user.name.includes(oInput.value)
+            )//当user.name.includes(this.value)为true时，返回user
+            
+            // .map()是Array 在es6中新增的方法
+            // ['a','b','c'].join("")=>'abc'
+            oUL.innerHTML = filterUsers.map(user=>`
+                <li>
+                    ${user.name}
+                </li>
+                `
+                ).join("")//将数组中的每一项用空字符串连接起来
+
+        /* for(let user of filterUsers){
+                const oLI = document.createElement('li');
+                oLI.innerText = user.name;
+                oUL.appendChild(oLI);
+            } */
+            //console.log(filterUsers);
           })
-     })
+     }
+     //防抖函数 返回一个函数  (加工函数，延长函数的执行时间)
+     //高阶函数
+     function debounce(fn,delay){
+         let id;
+        return function(){
+            //console.log('我被防抖了')
+            // 限流？
+            // 超过500ms 就会执行一次  小于500ms 就会清楚计时器，重新计时
+            clearTimeout(id)     // 清除定时器 
+            id = setTimeout(()=>{
+                fn();
+        },delay)
+     }
+    }
     </script>
 </body>
 </html>
