@@ -17,5 +17,5 @@
         return -1;
     return f[amount];
  }
-
+ console.log("最小硬币个数")
  console.log(coinChange([1,2,5],11))
