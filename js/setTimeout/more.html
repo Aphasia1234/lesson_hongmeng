@@ -24,7 +24,9 @@
                     // this 丢失  调用普通函数 this 指向全局
                     _this.fun1()
                 // 手动指定this指向
-                // call 编译阶段 绑定this指向
+                // call 每次执行时重新绑定this指向 
+                //但call()是立即执行，不使用与定时器(call和apply类似)
+                // 应该使用bind()
                 }),100)
         }
     }
