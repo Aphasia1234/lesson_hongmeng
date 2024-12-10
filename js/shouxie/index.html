@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+var a = {
+  name: 'Cherry',
+  // call 和 apply 的区别
+  // call 一个个的传参 call(thisBinder, a, b)
+  // apply 一次性给 以数组形式 apply(thisBinder, [a, b])
+  fn: function(a, b) {
+    console.log(this.name)
+    // a [1,2] + b undefined = 1,2undefined
+    // + 两边都是数字就是加法，如果不是就是连接运算符
+    // .toString()    String()
+    console.log(a + b)
+  }
+}
+// a.fn(1, 2) // 普通函数
+var b = a.fn; // 普通函数
+// 指定this
+// 立即执行
+// 参数
+console.log(b.apply(a, [1, 2])) // 3
+console.log(b.call(a, [1, 2]))  // 1,2undefined
+console.log(b.call(a, 1, 2))    // 3
+console.log(b.bind(a,1, 2))     // f(a,b){}
+console.log(b.bind(a,1, 2)())    // 3
+</script>
+</body>
+</html>
