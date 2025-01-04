@@ -1,0 +1,25 @@
+<template>
+    <main>
+        Main 主体区域
+        <h1>你的评分是{{ score }}</h1>
+        <Rate :value="score"/>
+        <Item />
+        <Item />
+    </main>
+</template>
+
+<script setup>
+import Rate from "./Rate.vue";
+import { ref } from "vue";
+// 将数据 从父组件 传递给子组件
+const score = ref(4);
+import Item from "./Item.vue";
+</script>
+
+<style scoped>
+main {
+    flex:1;
+    height:500px;
+    background-color: yellow;
+}
+</style>
