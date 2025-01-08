@@ -1,5 +1,11 @@
-# Vue 3 + Vite
+- vue3 响应式机制
+  - ref  .value  响应式对象 value  Object.defineProperty 性能好
+  - reactive  响应式代理 proxy 代理整个对象  开销大
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+- 父子组件通信
+  - props 父传子(父组件传值给子组件) 传的是数据
+  - @child-message="handleEvent" 自定义事件名称+处理函数 attrs 
+  - 子组件 一切由外界传的 都得声明一下
+    emit 汇报
+    emits = defineEmits(['child-message'])
+  - emits(event_name,params)
