@@ -20,7 +20,8 @@ defineProps({
         required:true
     }
 })
-const emits = defineEmits(['child-message'])// 触发
+//emits 汇报 触发
+const emits = defineEmits(['child-message'])
 const sendMessageToParent = () =>{
     emits('child-message',childMessage.value)
 }

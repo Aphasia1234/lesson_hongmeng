@@ -1,4 +1,5 @@
 <script setup>
+// composition API (组合式API)
 import {
   ref, // 处理简单数据类型响应
   reactive // 处理复杂数据类型响应
